@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTA USER Insights",
+  "type": "object",
+  "required": [
+    "meta",
+    "business_context",
+    "interview_source",
+    "user_profiles",
+    "user_lifecycle"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "skill_name": { "type": "string" },
+        "version": { "type": "string" },
+        "mode": { "type": "string" },
+        "created_at": { "type": "string" },
+        "language": { "type": "string" }
+      }
+    },
+    "business_context": {
+      "type": "object",
+      "properties": {
+        "client_name": { "type": "string" },
+        "industry": { "type": "string" },
+        "business_type": { "type": "string" },
+        "main_offer": { "type": "string" },
+        "target_service": { "type": "string" },
+        "current_customer_source": { "type": "string" },
+        "analysis_scope": { "type": "string" }
+      }
+    },
+    "interview_source": {
+      "type": "object",
+      "properties": {
+        "source_type": { "type": "string" },
+        "raw_transcript_available": { "type": "boolean" },
+        "summary": { "type": "string" },
+        "information_quality": { "type": "string" },
+        "missing_information": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "user_profiles": {
+      "type": "object",
+      "properties": {
+        "potential_users": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/user_profile" }
+        },
+        "core_users": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/user_profile" }
+        },
+        "high_value_users": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/user_profile" }
+        },
+        "unfit_users": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/user_profile" }
+        }
+      }
+    },
+    "user_lifecycle": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/lifecycle_stage" }
+    },
+    "follow_up_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "source_evidence": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "confidence_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "user_profile": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "identity": { "type": "string" },
+        "current_situation": { "type": "string" },
+        "typical_needs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "surface_problems": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "deep_pains": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "trigger_scenarios": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "decision_barriers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "trust_sources": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "payment_willingness": { "type": "string" },
+        "fit_reason": { "type": "string" },
+        "identification_signals": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "lifecycle_stage": {
+      "type": "object",
+      "properties": {
+        "stage": { "type": "string" },
+        "stage_goal": { "type": "string" },
+        "typical_scenarios": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "touchpoints": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "user_thoughts": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "user_behaviors": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "core_pains": {
+          "type": "array",
+          "minItems": 3,
+          "items": { "type": "string" }
+        },
+        "trust_barriers": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "progress_actions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "signals": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+
