@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "skill_name": "rta-discovery-skill",
+    "version": "0.1.0",
+    "created_at": "",
+    "language": "zh-CN"
+  },
+  "input_snapshot": {
+    "client_name": "",
+    "industry": "",
+    "business_type": "",
+    "main_offer": "",
+    "current_stage": "",
+    "existing_materials": []
+  },
+  "diagnosis": {
+    "client_type": "",
+    "confidence": "high_medium_low",
+    "reasoning": [],
+    "recommended_interview_path": ""
+  },
+  "interview_brief": {
+    "interview_goal": "",
+    "key_modules": [],
+    "must_get_information": [],
+    "follow_up_rules": []
+  },
+  "material_checklist": {
+    "required": [],
+    "recommended": [],
+    "bonus": []
+  },
+  "handoff": {
+    "recommended_next_mode": "",
+    "materials_collected": [],
+    "missing_items": [],
+    "manual_confirmation_required": true,
+    "manual_confirmation_points": []
+  }
+}

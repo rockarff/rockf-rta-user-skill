@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "skill_name": "rta-discovery-skill",
+    "version": "0.1.0",
+    "created_at": "2026-06-28",
+    "language": "zh-CN"
+  },
+  "input_snapshot": {
+    "client_name": "欧世杰",
+    "industry": "法律服务",
+    "business_type": "民事律师 / 企业法律顾问",
+    "main_offer": "民商事诉讼、企业法律顾问、专项法律服务",
+    "current_stage": "已有成交验证型",
+    "existing_materials": [
+      "访谈逐字稿",
+      "用户画像初稿",
+      "用户生命旅程初稿",
+      "真实业务与成交表达"
+    ]
+  },
+  "diagnosis": {
+    "client_type": "validated",
+    "confidence": "high",
+    "reasoning": [
+      "已有真实付费客户与收入结构",
+      "能区分大客户、个人客户、最好成交客户、不想接客户",
+      "能说明信任建立方式、成交触发点、转介绍逻辑",
+      "已能提供多个真实业务案例，而不是空泛判断"
+    ],
+    "recommended_interview_path": "validated"
+  },
+  "interview_brief": {
+    "interview_goal": "围绕真实成交客户、真实信任逻辑、真实转介绍路径，提炼可进入 USER 的高质量输入。",
+    "key_modules": [
+      "当前业务与产品结构",
+      "最近成交客户",
+      "最顺客户与最难客户",
+      "信任建立与成交触发",
+      "结果感、复购、转介绍",
+      "内容与用户反馈"
+    ],
+    "must_get_information": [
+      "真实成交客户类型",
+      "最好成交与最难成交用户",
+      "信任来源与成交触发点",
+      "转介绍与长期合作逻辑"
+    ],
+    "follow_up_rules": [
+      "优先追问真实案例",
+      "优先追问用户原话",
+      "优先追问真实成交细节"
+    ]
+  },
+  "material_checklist": {
+    "required": [
+      "访谈录音或逐字稿",
+      "客户本人日常表达样本",
+      "业务与产品信息"
+    ],
+    "recommended": [
+      "朋友圈文案",
+      "咨询聊天记录",
+      "过往内容样本",
+      "成交案例复盘"
+    ],
+    "bonus": [
+      "视频口播逐字稿",
+      "用户评价",
+      "转介绍场景记录"
+    ]
+  },
+  "handoff": {
+    "recommended_next_mode": "validated",
+    "materials_collected": [
+      "访谈逐字稿",
+      "真实业务与成交表达"
+    ],
+    "missing_items": [
+      "朋友圈文案",
+      "咨询聊天记录",
+      "过往内容样本"
+    ],
+    "manual_confirmation_required": true,
+    "manual_confirmation_points": [
+      "确认 validated 分类成立",
+      "确认当前资料足够进入 USER",
+      "确认后续分析以真实成交证据优先"
+    ]
+  }
+}
