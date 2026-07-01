@@ -65,6 +65,7 @@ rockf-rta-skill/
 │   ├── content/
 │   ├── workflow/
 │   ├── report/
+│   ├── quickstart-prompts.md
 │   ├── usage-guide.md
 │   └── workflow-why.md
 ├── templates/
@@ -102,6 +103,10 @@ rockf-rta-skill/
 如果还没完成前置访谈，请先走 Discovery。
 如果已经有上游资料，请告诉我缺什么、下一步该做什么，并保留人工确认闸门。
 ```
+
+更多可直接复制的话术见：
+
+- `references/quickstart-prompts.md`
 
 ## 仓库内不包含什么
 
