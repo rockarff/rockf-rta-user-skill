@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTA Report Input",
+  "type": "object",
+  "required": [
+    "report_mode",
+    "report_title",
+    "client_name",
+    "project_stage",
+    "summary",
+    "user_segments",
+    "lifecycle_notes",
+    "lifecycle_stage_axis",
+    "lifecycle_focus",
+    "content_judgment",
+    "topic_pool"
+  ],
+  "properties": {
+    "report_mode": {
+      "type": "string",
+      "enum": ["full_report", "stage_report"]
+    },
+    "report_title": { "type": "string" },
+    "client_name": { "type": "string" },
+    "project_stage": { "type": "string" },
+    "summary": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "user_segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "tag", "one_line", "identity", "scenes", "surface", "deep", "trust", "signals", "judgment"],
+        "properties": {
+          "name": { "type": "string" },
+          "tag": { "type": "string" },
+          "one_line": { "type": "string" },
+          "identity": { "type": "array", "items": { "type": "string" } },
+          "scenes": { "type": "array", "items": { "type": "string" } },
+          "surface": { "type": "array", "items": { "type": "string" } },
+          "deep": { "type": "array", "items": { "type": "string" } },
+          "trust": { "type": "array", "items": { "type": "string" } },
+          "signals": { "type": "array", "items": { "type": "string" } },
+          "judgment": { "type": "string" }
+        }
+      }
+    },
+    "lifecycle_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "lifecycle_stage_axis": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "lifecycle_focus": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["stage", "scene", "thought", "pain", "signal"],
+          "properties": {
+            "stage": { "type": "string" },
+            "scene": { "type": "string" },
+            "thought": { "type": "string" },
+            "pain": { "type": "string" },
+            "signal": { "type": "string" }
+          }
+        }
+      }
+    },
+    "content_judgment": {
+      "type": "object",
+      "properties": {
+        "public_focus": { "type": "array", "items": { "type": "string" } },
+        "private_domain": { "type": "string" },
+        "ratio": { "type": "array", "items": { "type": "string" } },
+        "style": { "type": "array", "items": { "type": "string" } },
+        "avoid": { "type": "array", "items": { "type": "string" } },
+        "map": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "users", "focus"],
+            "properties": {
+              "type": { "type": "string" },
+              "users": { "type": "string" },
+              "focus": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "topic_pool": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic_id", "topic_title", "user_type", "lifecycle_stage", "content_type", "interview_question", "open_question", "followup_question", "judgment_question"],
+        "properties": {
+          "topic_id": { "type": "string" },
+          "topic_title": { "type": "string" },
+          "user_type": { "type": "string" },
+          "lifecycle_stage": { "type": "string" },
+          "content_type": { "type": "string" },
+          "interview_question": { "type": "string" },
+          "open_question": { "type": "string" },
+          "followup_question": { "type": "string" },
+          "judgment_question": { "type": "string" }
+        }
+      }
+    },
+    "representative_topics": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "persona_summary": {
+      "type": "object",
+      "properties": {
+        "core_sentence": { "type": "string" },
+        "trust_role": { "type": "string" },
+        "expression_advantages": { "type": "array", "items": { "type": "string" } },
+        "not_fit": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "next_actions_30d": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_actions_90d": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

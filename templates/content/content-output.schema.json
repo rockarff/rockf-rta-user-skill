@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTA CONTENT Output",
+  "type": "object",
+  "required": [
+    "meta",
+    "input_snapshot",
+    "content_judgment",
+    "content_map",
+    "generation_record",
+    "topic_pool",
+    "selection_gate",
+    "production_mode",
+    "deliverables"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["skill_name", "version", "mode", "created_at", "language"],
+      "properties": {
+        "skill_name": { "type": "string" },
+        "version": { "type": "string" },
+        "mode": { "type": "string" },
+        "created_at": { "type": "string" },
+        "language": { "type": "string" }
+      }
+    },
+    "input_snapshot": {
+      "type": "object",
+      "required": ["client_name", "goal", "content_scene", "priority_user_types", "upstream_materials", "input_method"],
+      "properties": {
+        "client_name": { "type": "string" },
+        "industry": { "type": "string" },
+        "business_type": { "type": "string" },
+        "main_offer": { "type": "string" },
+        "goal": { "type": "string" },
+        "content_scene": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "priority_user_types": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "upstream_materials": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "input_method": {
+          "type": "string",
+          "enum": ["self_shot", "interview_shot"]
+        }
+      }
+    },
+    "content_judgment": {
+      "type": "object",
+      "required": [
+        "priority_user_types",
+        "priority_lifecycle_stages",
+        "priority_content_types",
+        "public_domain_focus",
+        "private_domain_focus",
+        "judgment_reasoning",
+        "mother_topic_pool",
+        "portrait_confidence"
+      ],
+      "properties": {
+        "priority_user_types": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "priority_lifecycle_stages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "priority_content_types": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "public_domain_focus": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "private_domain_focus": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "judgment_reasoning": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "mother_topic_pool": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "portrait_confidence": {
+          "type": "string"
+        }
+      }
+    },
+    "content_map": {
+      "type": "object",
+      "required": ["broad_traffic", "semi_vertical_traffic", "trust", "conversion"],
+      "properties": {
+        "broad_traffic": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/map_item" }
+        },
+        "semi_vertical_traffic": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/map_item" }
+        },
+        "trust": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/map_item" }
+        },
+        "conversion": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/map_item" }
+        },
+        "private_domain": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/map_item" }
+        }
+      }
+    },
+    "generation_record": {
+      "type": "object",
+      "required": [
+        "client_name",
+        "generation_number",
+        "topic_count",
+        "content_ratio",
+        "history_loaded",
+        "library_output_path"
+      ],
+      "properties": {
+        "client_name": { "type": "string" },
+        "generation_number": { "type": "integer" },
+        "topic_count": { "type": "integer" },
+        "content_ratio": {
+          "type": "object",
+          "properties": {
+            "broad_traffic": { "type": "string" },
+            "semi_vertical_traffic": { "type": "string" },
+            "trust": { "type": "string" },
+            "conversion": { "type": "string" },
+            "private_domain": { "type": "string" }
+          }
+        },
+        "history_loaded": { "type": "boolean" },
+        "library_output_path": { "type": "string" }
+      }
+    },
+    "topic_pool": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/topic_item" }
+    },
+    "selection_gate": {
+      "type": "object",
+      "required": [
+        "topic_confirmation_required",
+        "topic_confirmed",
+        "selected_topics",
+        "auxiliary_framework_requested"
+      ],
+      "properties": {
+        "topic_confirmation_required": { "type": "boolean" },
+        "topic_confirmed": { "type": "boolean" },
+        "selected_topics": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "auxiliary_framework_requested": { "type": "boolean" }
+      }
+    },
+    "production_mode": {
+      "type": "object",
+      "required": ["input_method", "reasoning"],
+      "properties": {
+        "input_method": {
+          "type": "string",
+          "enum": ["self_shot", "interview_shot"]
+        },
+        "reasoning": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "deliverables": {
+      "type": "object"
+    },
+    "follow_up_questions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "confidence_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "map_item": {
+      "type": "object",
+      "required": [
+        "user_type",
+        "lifecycle_stage_range",
+        "content_goal",
+        "message_direction",
+        "recommended_format",
+        "why_now"
+      ],
+      "properties": {
+        "user_type": { "type": "string" },
+        "lifecycle_stage_range": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "content_goal": { "type": "string" },
+        "message_direction": { "type": "string" },
+        "recommended_format": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "why_now": { "type": "string" }
+      }
+    },
+    "topic_item": {
+      "type": "object",
+      "required": [
+        "topic_id",
+        "topic_title",
+        "interview_question",
+        "topic_direction",
+        "mother_topic",
+        "topic_structure",
+        "topic_source_type",
+        "portrait_basis",
+        "speakability_score",
+        "public_content_fit",
+        "user_type",
+        "lifecycle_stage",
+        "content_type",
+        "scene",
+        "hook",
+        "comment_prompt",
+        "goal_action"
+      ],
+      "properties": {
+        "topic_id": { "type": "string" },
+        "topic_title": { "type": "string" },
+        "interview_question": { "type": "string" },
+        "topic_direction": { "type": "string" },
+        "mother_topic": { "type": "string" },
+        "topic_structure": { "type": "string" },
+        "topic_source_type": {
+          "type": "string",
+          "enum": ["native_mother_topic", "assisted_mother_topic", "business_inferred_topic"]
+        },
+        "portrait_basis": {
+          "type": "string",
+          "enum": ["closed", "near_close", "excluded", "mixed", "inference_only"]
+        },
+        "speakability_score": { "type": "string" },
+        "public_content_fit": { "type": "string" },
+        "user_type": { "type": "string" },
+        "lifecycle_stage": { "type": "string" },
+        "content_type": {
+          "type": "string",
+          "enum": ["broad_traffic", "semi_vertical_traffic", "trust", "conversion", "private_domain"]
+        },
+        "scene": { "type": "string" },
+        "hook": { "type": "string" },
+        "comment_prompt": { "type": "string" },
+        "goal_action": { "type": "string" }
+      }
+    }
+  }
+}

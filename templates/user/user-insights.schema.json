@@ -6,6 +6,7 @@
     "meta",
     "business_context",
     "interview_source",
+    "portrait_groups",
     "user_profiles",
     "user_lifecycle"
   ],
@@ -42,6 +43,28 @@
         "missing_information": {
           "type": "array",
           "items": { "type": "string" }
+        }
+      }
+    },
+    "portrait_groups": {
+      "type": "object",
+      "required": [
+        "already_closed_portraits",
+        "ready_to_convert_portraits",
+        "excluded_portraits"
+      ],
+      "properties": {
+        "already_closed_portraits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/portrait_basis" }
+        },
+        "ready_to_convert_portraits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/portrait_basis" }
+        },
+        "excluded_portraits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/portrait_basis" }
         }
       }
     },
@@ -91,6 +114,10 @@
         "description": { "type": "string" },
         "identity": { "type": "string" },
         "current_situation": { "type": "string" },
+        "portrait_basis": {
+          "type": "string",
+          "enum": ["already_closed", "ready_to_convert", "excluded", "mixed", "inference_only"]
+        },
         "typical_needs": {
           "type": "array",
           "items": { "type": "string" }
@@ -118,6 +145,24 @@
         "payment_willingness": { "type": "string" },
         "fit_reason": { "type": "string" },
         "identification_signals": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source_evidence": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "portrait_basis": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "identity": { "type": "string" },
+        "current_situation": { "type": "string" },
+        "trust_trigger": { "type": "string" },
+        "buying_trigger": { "type": "string" },
+        "disqualifying_traits": {
           "type": "array",
           "items": { "type": "string" }
         },
@@ -169,4 +214,3 @@
     }
   }
 }
-

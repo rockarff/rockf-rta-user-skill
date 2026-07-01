@@ -1,78 +1,65 @@
 #!/usr/bin/env python3
 
-import json
+from __future__ import annotations
+
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parents[1]
 
-REQUIRED_FILES = [
+REQUIRED = [
     "SKILL.md",
     "README.md",
-    "templates/user-insights.schema.json",
-    "templates/user-profiles.md",
-    "templates/user-lifecycle.md",
-    "templates/report.md",
-    "references/output-schema.md",
-    "references/chart-spec.md",
-    "references/interview-flow.md",
-    "references/question-bank.md",
-    "examples/transcript-example.md",
-    "outputs/test-generic-user-insights.json",
-    "outputs/test-anonymized-report.md",
+    "agents/openai.yaml",
+    "references/usage-guide.md",
+    "references/workflow-why.md",
+    "references/discovery/client-types.md",
+    "references/user/output-schema.md",
+    "references/persona/persona-dimensions.md",
+    "references/content/topic-rules.md",
+    "references/workflow/stage-gates.md",
+    "references/report/report-template.md",
+    "templates/discovery/discovery-output.schema.json",
+    "templates/user/user-insights.schema.json",
+    "templates/persona/persona-output.schema.json",
+    "templates/content/content-output.schema.json",
+    "templates/workflow/workflow-handoff.schema.json",
+    "templates/report/report-input.schema.json",
+    "templates/report/report-output.schema.json",
+    "scripts/build_workflow_bundle.py",
+    "scripts/build_report_package.py",
+    "scripts/build_from_workflow_bundle.py",
+    "scripts/render_report.py",
 ]
 
-FIXED_STAGES = [
-    "无意识",
-    "有意识",
-    "记住你",
-    "关注你",
-    "了解你",
-    "接触你",
-    "好朋友",
-    "选择你",
-    "有收获",
-    "转介绍",
+FORBIDDEN_PATTERNS = [
+    "欧世杰",
+    "张瑜",
+    "林岚",
+    "oushijie",
+    "linlan",
 ]
 
 
-def assert_true(condition, message):
-    if not condition:
-        raise AssertionError(message)
+def main() -> None:
+    missing = [item for item in REQUIRED if not (ROOT / item).exists()]
+    if missing:
+        raise SystemExit(f"missing required files: {missing}")
 
+    forbidden_hits = []
+    for path in ROOT.rglob("*"):
+        if not path.is_file():
+            continue
+        if ".git" in path.parts:
+            continue
+        if path.name == "smoke_test.py":
+            continue
+        text = path.read_text(encoding="utf-8", errors="ignore")
+        for pattern in FORBIDDEN_PATTERNS:
+            if pattern in text:
+                forbidden_hits.append(f"{path}: {pattern}")
 
-def check_required_files():
-    for rel in REQUIRED_FILES:
-        assert_true((ROOT / rel).exists(), f"Missing required file: {rel}")
+    if forbidden_hits:
+        raise SystemExit("forbidden client-like data found:\n" + "\n".join(forbidden_hits))
 
-
-def check_example_json():
-    path = ROOT / "outputs/test-generic-user-insights.json"
-    data = json.loads(path.read_text())
-
-    for key in ["meta", "business_context", "interview_source", "user_profiles", "user_lifecycle"]:
-        assert_true(key in data, f"Missing root key: {key}")
-
-    profiles = data["user_profiles"]
-    for key in ["potential_users", "core_users", "high_value_users", "unfit_users"]:
-        assert_true(key in profiles, f"Missing profile group: {key}")
-        assert_true(isinstance(profiles[key], list), f"Profile group must be a list: {key}")
-
-    lifecycle = data["user_lifecycle"]
-    assert_true(len(lifecycle) == 10, f"Lifecycle must contain 10 stages, got {len(lifecycle)}")
-    assert_true([item["stage"] for item in lifecycle] == FIXED_STAGES, "Lifecycle stages are not in fixed order")
-
-    for item in lifecycle:
-        assert_true(len(item.get("core_pains", [])) >= 3, f"Stage {item['stage']} must have at least 3 core pains")
-        for field in ["typical_scenarios", "touchpoints", "user_thoughts", "user_behaviors", "trust_barriers", "progress_actions", "signals"]:
-            assert_true(isinstance(item.get(field, []), list), f"Stage {item['stage']} field {field} must be a list")
-
-
-def main():
-    check_required_files()
-    check_example_json()
-    print("RTA-USER smoke test passed")
-
-
-if __name__ == "__main__":
-    main()
+    print("rockf-rta-skill smoke test passed")

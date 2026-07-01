@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "skill_name": "rta-discovery-skill",
+    "version": "0.1.0",
+    "created_at": "",
+    "language": "zh-CN"
+  },
+  "input_snapshot": {
+    "client_name": "",
+    "industry": "",
+    "business_type": "",
+    "main_offer": "",
+    "current_stage": "",
+    "existing_materials": []
+  },
+  "diagnosis": {
+    "client_type": "",
+    "confidence": "high_medium_low",
+    "data_completeness_level": "high_medium_low",
+    "reasoning": [],
+    "recommended_interview_path": ""
+  },
+  "interview_brief": {
+    "interview_goal": "",
+    "key_modules": [],
+    "must_get_information": [],
+    "follow_up_rules": [],
+    "mother_topic_capture_required": true
+  },
+  "portrait_snapshot": {
+    "already_closed": [],
+    "likely_to_close": [],
+    "unfit": []
+  },
+  "mother_topic_capture": {
+    "repeated_judgment_topics": [],
+    "repeated_misjudgment_topics": [],
+    "strongest_scene_topics": [],
+    "strongest_stance_topics": [],
+    "natural_expression_topics": []
+  },
+  "material_checklist": {
+    "required": [],
+    "recommended": [],
+    "bonus": []
+  },
+  "handoff": {
+    "recommended_next_mode": "",
+    "materials_collected": [],
+    "missing_items": [],
+    "portrait_readiness": "ready_partial_missing",
+    "mother_topic_seed_readiness": "ready_partial_missing",
+    "gate_status": {
+      "discovery_gate_passed": false,
+      "discovery_gate_blockers": []
+    },
+    "manual_confirmation_required": true,
+    "manual_confirmation_points": []
+  }
+}

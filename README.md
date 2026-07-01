@@ -1,105 +1,122 @@
-# RTA-USER Skill
+# RTA Skill
 
-RTA-USER 用于两种场景：
+一个统一的 RTA 总入口 skill。
 
-1. AI Agent 实时访谈客户，一问一答收集信息
-2. 直接分析一份访谈逐字稿，输出用户画像和用户生命旅程
+它不是单点功能，而是一条连贯链路：
 
-它聚焦两个核心交付：
+`Discovery -> User -> Persona -> Content -> Workflow -> Report`
 
-- 用户画像
-- 用户生命旅程
+适合两种使用方式：
 
-当前版本默认输出：
+1. 你自己拿客户访谈资料来跑
+2. 客户自己安装后，让自己的 Agent 按步骤访谈和分析
 
-- Markdown 报告
-- JSON 结构化数据
-- Mermaid 图表草稿
+## 这套 skill 为什么这样设计
 
-## 适用场景
+因为 RTA 不是“先想定位，再写内容”。
 
-- 个人 IP 陪跑
-- 咨询服务
-- 专业服务行业
-- 线下成交型业务
-- 需要先做用户理解、再做内容选题的客户
+它的顺序是固定的：
+
+1. **先做 Discovery**  
+   先判断客户是零基础、已验证还是混合型，同时补三类画像和母题种子。
+
+2. **再做 User**  
+   把用户画像和用户生命旅程拉出来，确认谁值得打、谁接近成交、谁应该排除。
+
+3. **再做 Persona**  
+   把“这个人该怎么说”定下来，不然内容会散。
+
+4. **再做 Content**  
+   内容不是凭空想出来的，它必须绑定画像、阶段、母题和表达边界。
+
+5. **Workflow 做总控**  
+   负责判断：现在能不能进入下一步，还缺什么，哪里必须人工确认。
+
+6. **最后做 Report**  
+   报告是交付层，不是分析层。它应该承接前面已经成立的判断。
+
+## 整体链路图
+
+```mermaid
+flowchart TD
+    A["Discovery\n客户分类 / 访谈稿 / 材料清单"] --> B["User\n用户画像 / 用户生命旅程"]
+    B --> C["Persona\n人设 / 表达方式 / 母题 / 红线"]
+    C --> D["Content\n内容判断 / 内容地图 / 题库 / 脚本"]
+    D --> E["Workflow\n阶段判断 / 闸门 / 汇总包"]
+    E --> F["Report\nHTML / PDF / 附录题库"]
+
+    A -.人工确认.-> B
+    B -.人工确认.-> C
+    C -.人工确认.-> D
+    D -.人工确认选题.-> E
+```
 
 ## 目录结构
 
 ```text
-.
+rockf-rta-skill/
 ├── SKILL.md
-├── examples/
-├── outputs/
+├── README.md
+├── agents/
 ├── references/
-└── templates/
+│   ├── discovery/
+│   ├── user/
+│   ├── persona/
+│   ├── content/
+│   ├── workflow/
+│   ├── report/
+│   ├── usage-guide.md
+│   └── workflow-why.md
+├── templates/
+│   ├── discovery/
+│   ├── user/
+│   ├── persona/
+│   ├── content/
+│   ├── workflow/
+│   └── report/
+└── scripts/
 ```
-
-## 主要输入
-
-- 实时问答内容
-- 访谈逐字稿
-- Discovery 阶段确认后的分类结论
-
-## 主要输出
-
-- `outputs/user-profiles.md`
-- `outputs/user-lifecycle.md`
-- `outputs/user-insights.json`
-- `outputs/user-profiles-chart.mmd`
-- `outputs/user-lifecycle-chart.mmd`
-- `outputs/report.md`
-
-仓库内附带一个示例输出：
-
-- `outputs/test-generic-user-insights.json`
 
 ## 使用顺序
 
-推荐先跑：
+### 方式 A：从零开始
 
-1. `RTA-DISCOVERY`
-2. 人工确认
-3. `RTA-USER`
+适合新客户、资料不完整的客户：
 
-如果已经有高质量逐字稿，也可以直接进入 `RTA-USER`。
+`Discovery -> User -> Persona -> Content -> Workflow -> Report`
 
-## 本地自检
+### 方式 B：已有上游材料
 
-运行：
+如果你已经有：
+- 逐字稿
+- 用户画像
+- 用户生命旅程
 
-```bash
-python3 scripts/smoke_test.py
-```
+可以从对应阶段接入，但仍建议先让 Workflow 判断。
 
-它会检查：
-
-- 核心文件是否齐全
-- 示例 JSON 是否结构正确
-- 生命周期是否为固定十阶段
-- 每个阶段是否至少有 3 条核心痛点
-
-## 最小安装说明
-
-给你的客户时，只需要告诉他：
-
-1. 下载这个仓库
-2. 把整个文件夹放进自己的 Agent / Skill 目录
-3. 保持目录结构不要改
-4. 使用时先说明自己要走哪种模式：
-   - 实时访谈
-   - 逐字稿分析
-5. 如果前面还没做客户分类，先使用 `RTA-DISCOVERY`
-
-建议客户第一次使用时这样说：
+## 推荐起手 prompt
 
 ```text
-请使用 RTA-USER skill，基于我的业务信息，先帮我完成用户画像和用户生命旅程分析。
-如果信息不够，请先补问关键问题，不要直接下结论。
+请使用 RTA skill。
+先判断我现在处于哪一个阶段。
+如果还没完成前置访谈，请先走 Discovery。
+如果已经有上游资料，请告诉我缺什么、下一步该做什么，并保留人工确认闸门。
 ```
 
-## 匿名案例
+## 仓库内不包含什么
 
-仓库内附带一份匿名示例成品：
+这个仓库是对外发布版，不包含：
 
-- `outputs/test-anonymized-report.md`
+- 客户逐字稿
+- 客户报告
+- 客户题库
+- 客户测试样例
+- 任何真实业务数据
+
+只保留：
+
+- 规则
+- 模板
+- schema
+- 脚本
+- 使用说明

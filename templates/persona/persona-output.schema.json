@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTA Persona Output",
+  "type": "object",
+  "required": [
+    "persona_core",
+    "value_proposition",
+    "fit_users",
+    "trust_role",
+    "expression_style",
+    "topic_axes",
+    "native_mother_topics",
+    "assisted_mother_topics",
+    "disallowed_topics",
+    "trust_mechanism",
+    "conversion_posture",
+    "expression_red_lines",
+    "red_lines",
+    "content_guidance"
+  ],
+  "properties": {
+    "persona_core": {
+      "type": "string"
+    },
+    "value_proposition": {
+      "type": "string"
+    },
+    "fit_users": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string"
+      }
+    },
+    "trust_role": {
+      "type": "object",
+      "required": ["primary", "secondary", "reason"],
+      "properties": {
+        "primary": { "type": "string" },
+        "secondary": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    },
+    "expression_style": {
+      "type": "object",
+      "required": ["pace", "tone", "sentence_pattern", "advantage_pattern"],
+      "properties": {
+        "pace": { "type": "string" },
+        "tone": { "type": "string" },
+        "sentence_pattern": { "type": "string" },
+        "advantage_pattern": { "type": "string" }
+      }
+    },
+    "topic_axes": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string"
+      }
+    },
+    "native_mother_topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "reason", "evidence", "speakability"],
+        "properties": {
+          "topic": { "type": "string" },
+          "reason": { "type": "string" },
+          "evidence": { "type": "array", "items": { "type": "string" } },
+          "speakability": { "type": "string" }
+        }
+      }
+    },
+    "assisted_mother_topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "reason"],
+        "properties": {
+          "topic": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "disallowed_topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["topic", "reason"],
+        "properties": {
+          "topic": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "trust_mechanism": {
+      "type": "string"
+    },
+    "conversion_posture": {
+      "type": "string"
+    },
+    "expression_red_lines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "red_lines": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string"
+      }
+    },
+    "content_guidance": {
+      "type": "string"
+    },
+    "confidence_notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

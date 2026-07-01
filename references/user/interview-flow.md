@@ -42,8 +42,10 @@ Ask:
 
 - Where did your past paying customers come from?
 - What were the last three paying customers like?
+- Which type of person is most likely to close next, even if they have not paid yet?
 - What do your smoothest customers have in common?
 - What do your most difficult customers have in common?
+- Which kind of person comes to ask, but usually should not buy?
 
 Extract:
 
@@ -51,6 +53,7 @@ Extract:
 - real transaction types
 - early core users
 - early unfit users
+- near-close portraits
 
 ### Round 3: User Types
 
@@ -64,6 +67,8 @@ Ask:
 - Who is the user you should serve first?
 - Who has stronger payment ability, cooperation quality, or referral value?
 - Who looks like a customer but is not suitable?
+- Among the people who have not bought yet, who is actually closest to buying?
+- Which kind of person sounds attractive at first, but usually should be filtered out?
 
 Extract:
 
@@ -71,6 +76,9 @@ Extract:
 - core users
 - high-value users
 - unfit users
+- closed portraits
+- near-close portraits
+- exclusion portraits
 
 ### Round 4: Demand Scenes
 
@@ -157,6 +165,7 @@ Prioritize missing information in this order:
 1. analysis scope
 2. core users
 3. real transaction examples
-4. user pains
-5. trust and decision details
-
+4. likely-to-close portraits
+5. unfit portraits
+6. user pains
+7. trust and decision details

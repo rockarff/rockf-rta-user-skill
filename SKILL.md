@@ -1,176 +1,118 @@
 ---
-name: rta-user-skill
-description: Use this skill when the user wants an AI Agent to run a structured user interview or analyze an interview transcript, then produce RTA-based user profiles and a ten-stage user lifecycle. It supports live Q&A interviews and transcript analysis, outputs four user profile types, a fixed ten-stage lifecycle, Markdown, JSON, and Mermaid chart drafts for later content, sales, presentation, or product-design skills.
+name: rta-skill
+description: Use this skill when the user wants one coherent RTA workflow instead of separate skills. It covers client classification, interview design, user portraits, user lifecycle, persona, content planning, workflow gating, and client-facing report packaging. Use it when the user is starting a new client, continuing an RTA delivery, or wants a unified handoff from discovery to report.
 ---
 
-# RTA-USER Skill
+# RTA Skill
 
-RTA-USER is a user insight interview skill based on the RTA model.
+This is the unified RTA skill.
 
-Use it to turn real answers or interview transcripts into:
+Use it when the user does not want to manually switch between Discovery, User, Persona, Content, and Report as separate skills.
 
-- four user profiles
-- a ten-stage user lifecycle
-- Markdown reports
-- JSON data for downstream skills
-- Mermaid chart drafts
+It covers one continuous workflow:
 
-Do not limit the analysis to one industry. Start from the customer's business, users, scenes, pains, trust, and purchase decisions.
+`Discovery -> User -> Persona -> Content -> Workflow -> Report`
 
-## Core Model
+Read first:
 
-RTA = Reach - Trust - Asset.
+- `references/usage-guide.md`
+- `references/workflow-why.md`
+- `references/workflow/workflow-map.md`
+- `references/workflow/stage-gates.md`
 
-This skill focuses mainly on Trust:
+Then load only the relevant phase references:
 
-- who the users are
-- what situations they are in
-- why they hesitate
-- why they trust
-- why they buy
-- why they recommend
+- Discovery phase:
+  - `references/discovery/client-types.md`
+  - `references/discovery/interview-paths.md`
+  - `references/discovery/question-design-rules.md`
+  - `references/discovery/material-checklist.md`
+- User phase:
+  - `references/user/interview-flow.md`
+  - `references/user/question-bank.md`
+  - `references/user/output-schema.md`
+- Persona phase:
+  - `references/persona/persona-dimensions.md`
+  - `references/persona/evidence-priority.md`
+  - `references/persona/expression-patterns.md`
+- Content phase:
+  - `references/content/content-types.md`
+  - `references/content/topic-rules.md`
+  - `references/content/topic-quality-rules.md`
+  - `references/content/output-schema.md`
+- Report phase:
+  - `references/report/report-modes.md`
+  - `references/report/page-structure.md`
+  - `references/report/output-schema.md`
 
-The output must still serve the larger loop:
+## What this skill does
 
-`content -> user -> business`
+This skill should help the user do five things in order:
 
-## Choose The Mode
+1. judge what kind of client this is
+2. collect the right material, especially near-close portraits and mother-topic seeds
+3. turn the material into user portraits, lifecycle, persona, and content direction
+4. stop at the right human confirmation gates
+5. package the result into a client-facing delivery report
 
-Before starting, identify the mode.
+## Why this skill is structured this way
 
-### Live Interview Mode
+The order is fixed for a reason:
 
-Use this when the user wants the agent to interview them directly.
+1. Discovery comes first because wrong inputs make every downstream output unstable.
+2. User comes before Persona because you cannot define expression without knowing who the expression is for.
+3. Persona comes before Content because content without a stable speaking identity becomes generic.
+4. Workflow sits above the stages because someone has to judge readiness, blockers, and next action.
+5. Report comes last because delivery should render conclusions, not replace analysis.
 
-Process:
+## Mandatory workflow rules
 
-1. Ask one group of questions at a time.
-2. Do not dump the full question bank at once.
-3. After each answer, decide whether to proceed or ask a follow-up.
-4. Keep probing until there is enough evidence to build profiles and lifecycle.
-5. Generate outputs only after the interview is complete.
+- Always collect three portrait directions when possible:
+  - already closed
+  - likely to close
+  - clearly unfit
+- Always start mother-topic capture in Discovery.
+- Always distinguish native mother topics from assisted mother topics in Persona.
+- Always mark topic source and portrait basis in Content.
+- Never auto-cross the required human confirmation gates.
 
-Read:
+## Human confirmation gates
 
-- `references/interview-flow.md`
-- `references/question-bank.md`
-- `references/output-schema.md`
+Do not auto-cross these:
 
-### Transcript Analysis Mode
+1. Discovery -> User
+2. User -> Persona
+3. Persona -> Content
+4. Topic pool -> Production draft
 
-Use this when the user provides a transcript from an interview.
+## Scripts
 
-Process:
+Use these scripts when packaging or rendering is needed:
 
-1. Read the transcript.
-2. Extract business context, user types, scenes, pains, trust signals, and decision barriers.
-3. Judge information quality: high, medium, or low.
-4. If there are gaps, ask 3-8 focused follow-up questions.
-5. Generate outputs after enough evidence is available.
+- `scripts/build_workflow_bundle.py`
+- `scripts/build_report_package.py`
+- `scripts/build_from_workflow_bundle.py`
+- `scripts/render_report.py`
 
-Read:
+## Templates
 
-- `references/interview-flow.md`
-- `references/output-schema.md`
+Phase templates are grouped under:
 
-## Required Outputs
+- `templates/discovery/`
+- `templates/user/`
+- `templates/persona/`
+- `templates/content/`
+- `templates/workflow/`
+- `templates/report/`
 
-Always produce two core outputs:
+## Privacy rule
 
-1. User profiles
-2. User lifecycle
+This publishable skill must not include:
 
-Do not produce a content opportunity map in the MVP unless the user explicitly asks.
+- real client transcripts
+- real client outputs
+- real topic libraries
+- real report files
+- any customer-identifiable working files
 
-## Four User Profile Types
-
-Always distinguish:
-
-- potential users
-- core users
-- high-value users
-- unfit users
-
-For each type, include:
-
-- user name
-- one-line description
-- identity
-- current situation
-- typical needs
-- surface problems
-- deep pains
-- trigger scenarios
-- decision barriers
-- trust sources
-- payment willingness
-- fit judgment
-- identification signals
-- source evidence
-
-## Ten Lifecycle Stages
-
-Always use these fixed stages:
-
-`无意识 -> 有意识 -> 记住你 -> 关注你 -> 了解你 -> 接触你 -> 好朋友 -> 选择你 -> 有收获 -> 转介绍`
-
-For each stage, include:
-
-- stage goal
-- typical scenarios
-- touchpoints
-- user thoughts
-- user behaviors
-- core pains
-- trust barriers
-- progress actions
-- signals
-
-Important:
-
-`core_pains` must include at least 3 items per stage. Prefer 3-5 specific pains.
-
-## Evidence Rules
-
-Do not invent user profiles.
-
-If the source does not support a conclusion, mark it as:
-
-`待补充`
-
-Use the customer's wording, cases, examples, and transaction facts as evidence.
-
-A user profile is not a demographic table. Focus on:
-
-- situation
-- problem
-- decision
-- trust
-- payment
-- fit
-
-## Output Files
-
-When file creation is requested or possible, generate:
-
-```text
-outputs/
-├── user-profiles.md
-├── user-lifecycle.md
-├── user-insights.json
-├── user-profiles-chart.mmd
-├── user-lifecycle-chart.mmd
-└── report.md
-```
-
-Use templates from:
-
-- `templates/user-profiles.md`
-- `templates/user-lifecycle.md`
-- `templates/report.md`
-- `templates/user-insights.schema.json`
-
-For chart requirements, read:
-
-- `references/chart-spec.md`
-
+Only rules, templates, schemas, scripts, and neutral instructions belong here.

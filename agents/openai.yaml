@@ -1,0 +1,8 @@
+interface:
+  display_name: "RTA"
+  short_description: "统一跑完整条 RTA 链路，从 Discovery 到交付报告"
+  brand_color: "#5E5473"
+  default_prompt: "Use $rta-skill to judge the current RTA stage, collect the right upstream inputs, preserve the human confirmation gates, and move from discovery to report in one coherent workflow."
+
+policy:
+  allow_implicit_invocation: true

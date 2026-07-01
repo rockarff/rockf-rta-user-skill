@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTA Workflow Handoff",
+  "type": "object",
+  "required": [
+    "current_stage",
+    "completed",
+    "missing_inputs",
+    "next_skill",
+    "confirmation_gate",
+    "stage_gates"
+  ],
+  "properties": {
+    "current_stage": { "type": "string" },
+    "completed": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "missing_inputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_skill": { "type": "string" },
+    "recommended_report_mode": { "type": "string" },
+    "report_ready": { "type": "boolean" },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "has_discovery": { "type": "boolean" },
+        "has_user": { "type": "boolean" },
+        "has_persona": { "type": "boolean" },
+        "has_content": { "type": "boolean" }
+      }
+    },
+    "confirmation_gate": { "type": "string" },
+    "stage_gates": {
+      "type": "object",
+      "required": [
+        "discovery_gate_passed",
+        "user_gate_passed",
+        "persona_gate_passed",
+        "content_gate_passed"
+      ],
+      "properties": {
+        "discovery_gate_passed": { "type": "boolean" },
+        "user_gate_passed": { "type": "boolean" },
+        "persona_gate_passed": { "type": "boolean" },
+        "content_gate_passed": { "type": "boolean" },
+        "blocked_by": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

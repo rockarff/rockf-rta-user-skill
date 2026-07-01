@@ -1,0 +1,76 @@
+{
+  "default_pages": [
+    {
+      "page_id": "p01",
+      "page_title": "封面",
+      "page_goal": "建立交付主题与项目边界",
+      "visual_type": "cover"
+    },
+    {
+      "page_id": "p02",
+      "page_title": "核心结论摘要",
+      "page_goal": "让客户先看懂最重要的判断",
+      "visual_type": "summary_cards"
+    },
+    {
+      "page_id": "p03",
+      "page_title": "项目背景与调研范围",
+      "page_goal": "交代当前阶段与本次交付范围",
+      "visual_type": "context_block"
+    },
+    {
+      "page_id": "p04",
+      "page_title": "用户分层总览",
+      "page_goal": "明确最值得抓的用户结构",
+      "visual_type": "layered_user_cards"
+    },
+    {
+      "page_id": "p05",
+      "page_title": "用户生命旅程总图",
+      "page_goal": "明确用户决策路径与可进入阶段",
+      "visual_type": "journey_timeline"
+    },
+    {
+      "page_id": "p06",
+      "page_title": "重点阶段拆解",
+      "page_goal": "标出关键卡点与切入机会",
+      "visual_type": "stage_matrix"
+    },
+    {
+      "page_id": "p07",
+      "page_title": "人设与表达定位",
+      "page_goal": "定义案主应该如何被理解",
+      "visual_type": "persona_card"
+    },
+    {
+      "page_id": "p08",
+      "page_title": "用户为什么会信任你",
+      "page_goal": "定义信任建立路径",
+      "visual_type": "trust_map"
+    },
+    {
+      "page_id": "p09",
+      "page_title": "内容增长判断",
+      "page_goal": "判断该做什么内容与不该做什么",
+      "visual_type": "content_matrix"
+    },
+    {
+      "page_id": "p10",
+      "page_title": "内容结构建议",
+      "page_goal": "给出流量、信任、转化结构建议",
+      "visual_type": "content_mix"
+    },
+    {
+      "page_id": "p11",
+      "page_title": "当前不建议做什么",
+      "page_goal": "避免错误投入",
+      "visual_type": "do_not_list"
+    },
+    {
+      "page_id": "p12",
+      "page_title": "下一步行动建议",
+      "page_goal": "给出 30 天与 90 天动作路线",
+      "visual_type": "roadmap"
+    }
+  ]
+}

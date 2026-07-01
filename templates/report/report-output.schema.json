@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RTA Report Output",
+  "type": "object",
+  "required": [
+    "report_mode",
+    "report_title",
+    "client_name",
+    "project_stage",
+    "key_findings",
+    "page_structure"
+  ],
+  "properties": {
+    "report_mode": {
+      "type": "string",
+      "enum": ["full_report", "stage_report"]
+    },
+    "report_title": {
+      "type": "string"
+    },
+    "client_name": {
+      "type": "string"
+    },
+    "project_stage": {
+      "type": "string"
+    },
+    "key_findings": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string"
+      }
+    },
+    "user_segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "core_need", "core_block"],
+        "properties": {
+          "name": { "type": "string" },
+          "core_need": { "type": "string" },
+          "core_block": { "type": "string" }
+        }
+      }
+    },
+    "lifecycle_summary": {
+      "type": "object",
+      "properties": {
+        "focus_stages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "public_content_window": {
+          "type": "string"
+        },
+        "transition_risk": {
+          "type": "string"
+        }
+      }
+    },
+    "persona_summary": {
+      "type": "object",
+      "properties": {
+        "persona_core": { "type": "string" },
+        "trust_role": { "type": "string" },
+        "expression_style": { "type": "string" },
+        "red_lines": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "content_summary": {
+      "type": "object",
+      "properties": {
+        "priority_users": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "content_mix": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "avoid_now": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "not_recommended": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_actions_30d": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "next_actions_90d": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "page_structure": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "page_id",
+          "page_title",
+          "page_goal",
+          "visual_type",
+          "key_message"
+        ],
+        "properties": {
+          "page_id": { "type": "string" },
+          "page_title": { "type": "string" },
+          "page_goal": { "type": "string" },
+          "visual_type": { "type": "string" },
+          "key_message": { "type": "string" },
+          "supporting_points": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "confidence_notes": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

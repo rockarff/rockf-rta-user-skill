@@ -9,6 +9,7 @@ Always generate human-readable Markdown and machine-readable JSON.
   "meta": {},
   "business_context": {},
   "interview_source": {},
+  "portrait_groups": {},
   "user_profiles": {},
   "user_lifecycle": [],
   "follow_up_questions": [],
@@ -57,6 +58,30 @@ Always generate human-readable Markdown and machine-readable JSON.
 
 ## User Profiles
 
+Before the four profile buckets, explicitly preserve portrait groups:
+
+```json
+{
+  "already_closed_portraits": [],
+  "ready_to_convert_portraits": [],
+  "excluded_portraits": []
+}
+```
+
+Each portrait basis object:
+
+```json
+{
+  "name": "",
+  "identity": "",
+  "current_situation": "",
+  "trust_trigger": "",
+  "buying_trigger": "",
+  "disqualifying_traits": [],
+  "source_evidence": []
+}
+```
+
 ```json
 {
   "potential_users": [],
@@ -74,6 +99,7 @@ Each user profile object:
   "description": "",
   "identity": "",
   "current_situation": "",
+  "portrait_basis": "already_closed_ready_to_convert_excluded_mixed_inference_only",
   "typical_needs": [],
   "surface_problems": [],
   "deep_pains": [],
@@ -113,4 +139,3 @@ Each stage object:
 ```
 
 `core_pains` must contain at least 3 items per stage. Prefer 3-5.
-
